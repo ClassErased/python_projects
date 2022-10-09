@@ -4,30 +4,19 @@ from sys import *
 
 numbers = []
 int = 2
-status = True
+status = 1
 
 ## Keep calculating powers of two to delay analysis
 def sleeper():
-    while status == True:
-        
+    while status == 1:
+        global int
         int = int ** 2
-        print(int)
-        
-        if int > 10e+20:
+        print(f"{int}\n")
+        # append to array 
+        if int > 10e+8000000000:
             print("maths complete")
-            status = False
+            global status
+            status == 0
+            break
 
-    
-#
-#def unused():
-#    
-#    for i in range (1,10):
-#        
-#        print("your mum gay")
-#
-#
-#def __main__():
-#    sleeper()
-
-if __name__ == __main__:
-    sleeper()
+sleeper()
