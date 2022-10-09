@@ -25,9 +25,9 @@ def sleeper():
 #        
 #        print("your mum gay")
 #
-
-def __main__():
-    sleeper()
+#
+#def __main__():
+#    sleeper()
 
 if __name__ == __main__:
-    __main__()
+    sleeper()
