@@ -1,3 +1,1 @@
-## Just writing some random code to just eat up time and resources
-
-python slow xd
+## Just playing around with sandbox evasion
