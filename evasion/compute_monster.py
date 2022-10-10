@@ -19,5 +19,5 @@ def sleeper():
             status == 0
             break
 
-if __name__ == __main__
+if __name__ == '__main__'
 sleeper()
