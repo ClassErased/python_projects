@@ -1,7 +1,5 @@
-import numpy as np
-from sys import *
-
-
+#import numpy as np
+#from sys import *
 numbers = []
 int = 2
 status = 1
@@ -19,4 +17,5 @@ def sleeper():
             status == 0
             break
 
-sleeper()
+if __name__ == '__main__':
+    sleeper()
