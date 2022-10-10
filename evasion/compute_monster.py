@@ -1,7 +1,5 @@
-import numpy as np
-from sys import *
-
-
+#import numpy as np
+#from sys import *
 numbers = []
 int = 2
 status = 1
