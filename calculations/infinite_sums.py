@@ -6,7 +6,7 @@ def first_calc():
     j = 1
     n = float(1.33)
 
-    # estimate limit
+    # lim
     ans =  1 - 1 / 10**n
     print(f"Answer of the first sum is: {ans}\n")
 
@@ -19,23 +19,15 @@ def first_calc():
 def second_calc():
     n = 5
     value = 1
-    baseline = (-1)**value
     ans2 = []
-    ans2.append(baseline)
-    print(ans2)
-    # todo: clean up this clusterfuck
-    # took me 90 mins but i finally got the logic right, im so happy rn
+    ans2.append((-1)**value)
+    
     for i in range (0, n):
         value += 1
-        result = (-1)**value
-        # print statement is for debugging
-        print(result) 
+        result = (-1)**value 
         ans2.append(result)
     
-    final = sum(ans2)
-
-    print(f"Answer of the second sum is: {final}\n")
-
+    print(f"Answer of the second sum is: {sum(ans2)}\n")
 
 if __name__ == '__main__':
     first_calc()
