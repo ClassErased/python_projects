@@ -1,4 +1,6 @@
-from numpy import sum
+from unicodedata import digit
+from numpy import integer, sum
+from traitlets import Integer
 
 # j=1∑n 9 / ​10^j​ = 1 − 10^1​
 # 9 / 10**j = 1 - 1 / 10**n
@@ -9,12 +11,12 @@ def first_calc(n: float, j = 1):
 
 # useful to test for divergent sum, the sum shown is divergent.
 # values bounce between -1 and 0 as it sums each value in [ans2] for n iterations
-#   1 
+#   n 
 #   ∑  (-1)**j
 # j = 1
 def second_calc(n: int , answer: list = [(-1),], j = 1) -> list:
     #answer.append((-1)**j)
-    for i in range (0, n):
+    for i in range(n):
         j += 1
         result = (-1)**j 
         answer.append(result)
