@@ -16,27 +16,25 @@ def first_calc():
 #   1 
 #   ∑  (-1)**j
 # j = 1
-def second_calc():
-    n = 5
+def second_calc(*args):
     value = 1
     ans2 = []
     ans2.append((-1)**value)
     
-    for i in range (0, n):
+    for i in range (0, *args):
         value += 1
         result = (-1)**value 
         ans2.append(result)
     
-    print(f"Answer of the second sum is: {sum(ans2)}\n")
+    print(f"Answer of the second sum is: {sum(ans2)}\n",ans2,"\n")
 
 if __name__ == '__main__':
     first_calc()
-    second_calc()
+    #  lim   n               lim
+    #  n→∞   ∑  9 / 10^j   = n→∞ (1 - 1 / 10^n) = 1
+    #       j=1 
 
-#  lim   n               lim
-#  n→∞   ∑  9 / 10^j   = n→∞ (1 - 1 / 10^n) = 1
-#       j=1 
-
-#  ∞    9
-#  ∑    -   = 1
-# j=1  10^j
+    #  ∞    9
+    #  ∑    -   = 1
+    # j=1  10^j
+    second_calc(11)
