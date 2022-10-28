@@ -1,6 +1,6 @@
-from unicodedata import digit
-from numpy import integer, sum
-from traitlets import Integer
+#VSCode keeps adding its own libs
+from numpy import sum
+
 
 # j=1∑n 9 / ​10^j​ = 1 − 10^1​
 # 9 / 10**j = 1 - 1 / 10**n
