@@ -16,17 +16,16 @@ def first_calc():
 #   1 
 #   ∑  (-1)**j
 # j = 1
-def second_calc(*args):
-    value = 1
-    ans2 = []
-    ans2.append((-1)**value)
+def second_calc(n: int , answer: list = []) -> list:
+    value=1
+    answer.append((-1)**value)
     
-    for i in range (0, *args):
+    for i in range (0, n):
         value += 1
         result = (-1)**value 
-        ans2.append(result)
+        answer.append(result)
     
-    print(f"Answer of the second sum is: {sum(ans2)}\n",ans2,"\n")
+    print(f"Answer of the second sum is: {sum(answer)}\n",answer,"\n")
 
 if __name__ == '__main__':
     first_calc()
@@ -37,4 +36,4 @@ if __name__ == '__main__':
     #  ∞    9
     #  ∑    -   = 1
     # j=1  10^j
-    second_calc(11)
+    second_calc(9)
