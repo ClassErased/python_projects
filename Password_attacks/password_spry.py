@@ -36,5 +36,5 @@ if __name__ == '__main__':
     #compile list from engagement notes
     with open("usernames.txt", "r") as usernames:
         passwordSpray(targetpass,targeturl,error)
-
+    
     print("[!!] Username not in list")
