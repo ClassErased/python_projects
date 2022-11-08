@@ -19,9 +19,9 @@ def bruteCracking(targetusername,targeturl,error):
             print("CSRF Token Detected!! BruteF0rce Not Working This Website.")
             exit(0)
         else:
-                 print(f"Username: ---> ", {targetusername})
-                 print(f"Password: ---> ", {password})
-                 exit(0)
+            print(f"Username: ---> ", {targetusername})
+            print(f"Password: ---> ", {password})
+            exit(0)
 
 #Fixed up the exception mess in the function, used __main__ to call the func and handle exception
 if __name__ == '__main__':
