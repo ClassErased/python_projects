@@ -8,12 +8,13 @@ targetusername = input("Enter Target Username: ")
 error = input("Enter Wrong Password Error Message: ")
 
 def bruteCracking(targetusername,targeturl,error):
-    print(" _____ _               _____                       _  ______            _        __                   ")
-    print("/  __ | |             |  ___|                     | | | ___ \          | |      / _|                  ")
-    print("| /  \| | __ _ ___ ___| |__ _ __ __ _ ___  ___  __| | | |_/ /_ __ _   _| |_ ___| |_ ___  _ __ ___ ___ ")
-    print("| |   | |/ _` / __/ __|  __| '__/ _` / __|/ _ \/ _` | | ___ | '__| | | | __/ _ |  _/ _ \| '__/ __/ _ \\")
-    print("| \__/| | (_| \__ \__ | |__| | | (_| \__ |  __| (_| | | |_/ | |  | |_| | ||  __| || (_) | | | (_|  __/")
-    print(" \____|_|\__,_|___|___\____|_|  \__,_|___/\___|\__,_| \____/|_|   \__,_|\__\___|_| \___/|_|  \___\___|","\n\n")
+    print("""
+     _____ _               _____                       _  ______            _        __                   
+    /  __ | |             |  ___|                     | | | ___ \          | |      / _|                  
+    | /  \| | __ _ ___ ___| |__ _ __ __ _ ___  ___  __| | | |_/ /_ __ _   _| |_ ___| |_ ___  _ __ ___ ___ 
+    | |   | |/ _` / __/ __|  __| '__/ _` / __|/ _ \/ _` | | ___ | '__| | | | __/ _ |  _/ _ \| '__/ __/ _ \\
+    | \__/| | (_| \__ \__ | |__| | | (_| \__ |  __| (_| | | |_/ | |  | |_| | ||  __| || (_) | | | (_|  __/
+     \____|_|\__,_|___|___\____|_|  \__,_|___/\___|\__,_| \____/|_|   \__,_|\__\___|_| \___/|_|  \___\___|\n\n""")
     
     for password in passwords:
         password = password.strip()
@@ -26,8 +27,7 @@ def bruteCracking(targetusername,targeturl,error):
             print("CSRF Token Detected!! BruteF0rce Not Working This Website.")
             exit(0)
         else:
-            print(f"Username: ---> ", {targetusername})
-            print(f"Password: ---> ", {password})
+            print(f"Username: ---> ", {targetusername}, "\n", "Password: ---> ", {password}, "\n")
             exit(0)
 
 #Fixed up the exception mess in the function, used __main__ to call the func and handle exception
@@ -35,9 +35,9 @@ if __name__ == '__main__':
     try:
         bruteCracking()
     except:
-        print("Some Error Occurred Please Check Your Internet Connection !!")
+        print("Some Error Occurred Please Check Your Internet Connection !!\n")
 
     with open("passwords.txt", "r") as passwords:
         bruteCracking(targetusername,targeturl,error)
 
-    print("[!!] password not in list")
+    print("[!!] password not in list\n")
