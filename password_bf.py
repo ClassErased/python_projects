@@ -8,6 +8,13 @@ targetusername = input("Enter Target Username: ")
 error = input("Enter Wrong Password Error Message: ")
 
 def bruteCracking(targetusername,targeturl,error):
+    print(" _____ _               _____                       _  ______            _        __                   ")
+    print("/  __ | |             |  ___|                     | | | ___ \          | |      / _|                  ")
+    print("| /  \| | __ _ ___ ___| |__ _ __ __ _ ___  ___  __| | | |_/ /_ __ _   _| |_ ___| |_ ___  _ __ ___ ___ ")
+    print("| |   | |/ _` / __/ __|  __| '__/ _` / __|/ _ \/ _` | | ___ | '__| | | | __/ _ |  _/ _ \| '__/ __/ _ \\")
+    print("| \__/| | (_| \__ \__ | |__| | | (_| \__ |  __| (_| | | |_/ | |  | |_| | ||  __| || (_) | | | (_|  __/")
+    print(" \____|_|\__,_|___|___\____|_|  \__,_|___/\___|\__,_| \____/|_|   \__,_|\__\___|_| \___/|_|  \___\___|","\n\n")
+    
     for password in passwords:
         password = password.strip()
         print(f"Trying:", {password})
