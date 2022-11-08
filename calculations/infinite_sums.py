@@ -10,7 +10,7 @@ def first_calc(n: float, j = 1):
     print(f"Answer of the first sum is: {answer}\n")
 
 # useful to test for divergent sum, the sum shown is divergent.
-# values bounce between -1 and 0 as it sums each value in [ans2] for n iterations
+# values bounce between -1 and 0 as it sums each value in answer for n iterations
 #   n 
 #   ∑  (-1)**j
 # j = 1
