@@ -2,6 +2,11 @@ import requests
 
 #Code reviewed, time to hustle.
 def passwordSpray(password: str, url: str) -> bool:
+    #if framework == "Jinga2" or "jinga2":                     // Future code for framework handling
+        #csrf = ["{{ csrf_token }}", "{% csrf_token %}"]       // Sets csrf list to include formats present
+    #elif framework == "Django" or "django":                   // within that templating engine
+        #csrf = ["csrf_token", "{% csrf_token %}"]
+    
     print("""
      _____ _               _____                       _  ______            _        __                   
     /  __ | |             |  ___|                     | | | ___ \          | |      / _|                  
@@ -32,11 +37,12 @@ if __name__ == '__main__':
     url = input("Enter Target Url: ")
     password = input("Enter Target Password: ")
     error = input("Enter Wrong User Error Message: ")
+    #framework = input("Enter target framework (will be used to set params to look for): ")
     
     try:
         passwordSpray()
     except:
-        print("Some Error Occurred Please Check Your Internet Connection !!")
+        print("Exception occured!!") # Be more explicit, catch specific exceptions to make life easier later on
 
     #compile list from engagement notes
     with open("usernames.txt", "r") as usernames:
