@@ -1,11 +1,15 @@
 import requests
 
 #Code reviewed, time to hustle.
-def passwordSpray(password: str, url: str) -> bool:
+def passwordSpray(password: str, url: str, framework: str) -> bool:
     #if framework == "Jinga2" or "jinga2":                     // Future code for framework handling
         #csrf = ["{{ csrf_token }}", "{% csrf_token %}"]       // Sets csrf list to include formats present
     #elif framework == "Django" or "django":                   // within that templating engine
         #csrf = ["csrf_token", "{% csrf_token %}"]
+    #elif framework == "ASP.NET" or "asp.net":
+        #csrf = ["RequestVerificationToken","Html.AntiForgeryToken","__RequestVerificationToken"]
+    #else:
+        #print("No framework selected, program will use list of all frameworks in this program.","\n","However, this is less efficient. You should walk the site and attempt to discover its framework by seeing how it handles input")
     
     print("""
      _____ _               _____                       _  ______            _        __                   
