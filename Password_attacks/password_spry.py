@@ -16,7 +16,7 @@ def frameworkChecker(framework: str) -> bool:
         csrf = ["RequestVerificationToken","Html.AntiForgeryToken","__RequestVerificationToken"]
         return True
     if not True:
-        sys.exit("Framework was not selected!")
+        sys.exit("Unknown Framework!")
         
     
 
