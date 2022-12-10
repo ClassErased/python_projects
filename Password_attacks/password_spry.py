@@ -4,9 +4,6 @@
 import time as t
 import requests as r
 from sys import exit
-
-#Got rid of framework checker, just use burp proxy to look for requests that contain a CSRF token 
-#in the request parameters or headers. The CSRF token will typically be a long, random-looking string of characters
             
 def passwordSpray(password: str, url: str) -> bool:
     csrf = []
@@ -36,6 +33,7 @@ def passwordSpray(password: str, url: str) -> bool:
                                                     # I sorta get what you're saying here, but I don't understand the benefits. Am I correct to say, init the dictionary and then save headers response into that dict to be looked at further?
                 print("CSRF token detected") # you can add headers like: response = requests.post(url, data=data, headers=headers) and create a headers dict for the CSRF token
                 return False
+                #response = 
         
         else:
             print(f"Success: Username: ---> ", {username}, "\n", "Password: ---> ", {password})
@@ -43,6 +41,10 @@ def passwordSpray(password: str, url: str) -> bool:
 
 
 if __name__ == '__main__':
+
+    #REMEMBER THIS IS NOT FOR USE WITHOUT PREVIOUS INFORMATION GATHERING
+    #Use Burp Suite Proxy to identify the implementation of csrf, its much simpler than
+    #trying to look for all these different frameworks from python GET requests
     
     url = input("Enter Target Url: ")
     password = input("Enter Target Password: ")
