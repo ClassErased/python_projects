@@ -28,11 +28,11 @@ def passwordSpray(password: str, url: str) -> bool:
             t.sleep(5) # wait to avoid detection
             pass
         
-        for i in csrf:    
-            if csrf in str(response.content): # use burp suite proxy or OWASP ZAP instead
+        #for i in csrf:    
+            #if csrf in str(response.content): # use burp suite proxy or OWASP ZAP instead
                                                     # I sorta get what you're saying here, but I don't understand the benefits. Am I correct to say, init the dictionary and then save headers response into that dict to be looked at further?
-                print("CSRF token detected") # you can add headers like: response = requests.post(url, data=data, headers=headers) and create a headers dict for the CSRF token
-                return False
+                #print("CSRF token detected") # you can add headers like: response = requests.post(url, data=data, headers=headers) and create a headers dict for the CSRF token
+                #return False
                 #response = 
         
         else:
