@@ -25,7 +25,7 @@ def passwordSpray(password: str, url: str) -> bool:
         if not r.ok:
             #Code here for debug, if I move unsuccessful passwords out, then the final list is self-documenting.
             print(username.pop(username))
-            t.sleep(5) # wait to avoid detection
+            t.sleep(1) # wait to avoid detection
             pass
         
         #for i in csrf:    
